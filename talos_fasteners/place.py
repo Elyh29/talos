@@ -569,6 +569,10 @@ class FASTENERS_OT_click(bpy.types.Operator):
         if a is None:
             self.report({"WARNING"}, tr("The part of this screw is gone: it cannot be edited"))
             return False
+        from . import unavailable
+        if unavailable(screw.get("fastener") and screw["fastener"].to_dict(), context.scene.talos_fasteners):
+            self.report({"WARNING"}, tr("{} was made with another edition: it can be moved, copied or removed, not edited here", screw.name))
+            return False
         self.stop_edit(context, keep=True)
         context.view_layer.objects.active = screw
         bpy.ops.talos.pick()

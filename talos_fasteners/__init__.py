@@ -19,8 +19,7 @@ try:
 except ImportError:
     pro = None
 
-PRO_ONLY = {"kind": {"DIN7505", "ASME_SHCS"}, "nut": {"TNUT20", "TNUT30", "TNUT40", "ASME_HEX"}, "washer": {"SAE"},
-            "into": {"INSERT", "SELF_TAP"}, "pattern": {"CORNERS", "LINE", "CIRCLE"}}
+PRO_ONLY = {"into": {"INSERT", "SELF_TAP"}, "pattern": {"CORNERS", "LINE", "CIRCLE"}}
 
 
 ICONS = bpy.utils.previews.new()
@@ -180,8 +179,8 @@ def cfg_of(st):
     return {"kind": st.kind, "size": st.size, "length": st.length, "auto_length": st.auto_length, "seat": seat, "series": st.series,
             "joint": st.joint, "through": st.through, "thread": st.thread, "nut": st.nut, "washer": st.washer, "head_washer": st.head_washer,
             "into": st.into, "insert": st.insert, "drive": std.drive_of(st.kind, st.drive),
-            "grade": st.grade, "materials": st.materials, "wood": st.wood, "printing": st.printing and bool(pro), "trap_slot": st.trap_slot, "bridge": st.bridge, "bridge_layer": st.bridge_layer,
-            "insert_dims": (st.insert_length, st.insert_od, st.insert_hole), "print_gap": st.print_gap, "teardrop": st.teardrop, "nut_trap": st.nut_trap and st.joint == "BOLT"}
+            "grade": st.grade, "materials": st.materials, "wood": st.wood, "printing": st.printing and bool(pro), "trap_slot": st.trap_slot and st.printing and bool(pro), "bridge": st.bridge, "bridge_layer": st.bridge_layer,
+            "insert_dims": (st.insert_length, st.insert_od, st.insert_hole), "print_gap": st.print_gap, "teardrop": st.teardrop, "nut_trap": st.nut_trap and st.joint == "BOLT" and st.printing and bool(pro)}
 
 
 class FASTENERS_OT_add(bpy.types.Operator):
@@ -311,6 +310,20 @@ class FASTENERS_OT_tidy(bpy.types.Operator):
         return {"FINISHED"}
 
 
+def unavailable(c, st):
+    bad = []
+    for k, v in (c or {}).items():
+        prop = st.bl_rna.properties.get(k)
+        if prop is None or prop.type != "ENUM" or prop.is_enum_flag:
+            continue
+        ids = {i.identifier for i in prop.enum_items}
+        if ids and v not in ids:
+            bad.append(k)
+    if not pro and c and c.get("printing"):
+        bad.append("printing")
+    return bad
+
+
 class FASTENERS_OT_pick(bpy.types.Operator):
     """Copy the settings of the active screw into the panel"""
     bl_idname = "talos.pick"
@@ -322,20 +335,34 @@ class FASTENERS_OT_pick(bpy.types.Operator):
         return context.active_object is not None and "fastener" in context.active_object
 
     def execute(self, context):
-        c, st = context.active_object["fastener"], context.scene.talos_fasteners
-        st.kind = c["kind"]
-        st.size, st.length = c["size"], c["length"]
-        for k in ("series", "joint", "thread", "nut", "washer", "head_washer", "into", "insert", "drive", "printing", "print_gap", "teardrop", "nut_trap", "grade", "materials", "trap_slot", "bridge", "bridge_layer", "wood"):
+        c, st = context.active_object["fastener"].to_dict(), context.scene.talos_fasteners
+        skipped = []
+
+        def put(k, v):
+            try:
+                setattr(st, k, v)
+            except (TypeError, ValueError, KeyError):
+                skipped.append(k)
+        put("kind", c["kind"])
+        if "kind" not in skipped:
+            put("size", c["size"])
+            if str(c["length"]) in {i.identifier for i in st.bl_rna.properties["length"].enum_items}:
+                put("length", str(c["length"]))
+        for k in ("series", "joint", "thread", "nut", "washer", "head_washer", "into", "insert", "drive", "print_gap", "teardrop", "nut_trap", "grade", "materials", "trap_slot", "bridge", "bridge_layer", "wood"):
             if k in c:
-                setattr(st, k, c[k])
+                put(k, c[k])
+        if "printing" in c:
+            put("printing", bool(c["printing"]) and bool(pro))
+            if c["printing"] and not pro:
+                skipped.append("printing")
         if "insert_dims" in c:
             st.insert_length, st.insert_od, st.insert_hole = c["insert_dims"]
-        for k in ():
-            if k in c:
-                setattr(st, k, c[k])
-        if std.family(c["kind"]) == "CAP":
-            st.seat = c["seat"]
+        if c["kind"] in std.KINDS and std.family(c["kind"]) == "CAP" and "kind" not in skipped:
+            put("seat", c["seat"])
         st.auto_length = False
+        if skipped:
+            names = ", ".join(st.bl_rna.properties[k].name if k in st.bl_rna.properties else k for k in dict.fromkeys(skipped))
+            self.report({"WARNING"}, tr("Not available in this edition, left as it was: {}", names))
         return {"FINISHED"}
 
 

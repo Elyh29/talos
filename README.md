@@ -12,7 +12,7 @@ it crosses is drilled. Move it, the holes follow. Change it, screw and holes are
 - **Real holes**: ISO 273 clearance (fine, medium, coarse), DIN 974-1 counterbores, 90° countersinks, ISO 2306 tapped holes, H7 pin holes;
   auto length; joints into the part below, through bolt with washer and nut, single part, tapped in the part.
 - **Catalogue**: ISO 4762, DIN 7984, ISO 10642, ISO 7046, ISO 4017, ISO 4014, ISO 7380, ISO 7045, ISO 4026, ISO 7379, DIN 976,
-  ISO 8734, ISO 2338 — M2 to M20; nuts and washers; hexagon socket, Torx, Phillips, Pozidriv, slotted; grades and materials.
+  ISO 8734, ISO 2338 — M2 to M20; wood screws; inch screws (UNC); nuts, T-nuts and washers; hexagon socket, Torx, Phillips, Pozidriv, slotted; grades and materials.
 - **Edit like objects**: click a placed screw to change or move it; Shift+D and Ctrl+M copies keep their holes; X leaves nothing behind;
   everything tidy in one *Talos* collection.
 - **Drawings**: with [Ichno](https://github.com/Elyh29/ichno), holes are called out (4 × Ø6.6 ⌴ Ø11 ↧ 6.4) and the bill of materials
