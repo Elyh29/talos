@@ -1,0 +1,11 @@
+name: Feature request
+description: An idea for a fastener, a joint or the add-on
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What do you need?
+      description: The fastener or joint (with its standard, ISO, DIN, ASME… if there is one) and how you would use it.
+    validations:
+      required: true

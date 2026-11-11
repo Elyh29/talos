@@ -1,0 +1,15 @@
+schema_version = "1.0.0"
+
+id = "talos_fasteners"
+version = "1.0.0"
+name = "Talos"
+tagline = "Fasteners: standard screws with their holes, no Boolean"
+maintainer = "Ely"
+website = "https://github.com/Elyh29/talos"
+type = "add-on"
+tags = ["Mesh", "Object"]
+
+blender_version_min = "4.3.0"
+
+license = ["SPDX:GPL-3.0-or-later"]
+copyright = ["2026 Ely"]
