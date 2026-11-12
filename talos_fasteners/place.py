@@ -226,6 +226,13 @@ def compute(context):
             holes.append(tr("Ø{} countersunk Ø{} × 90°", info["dia"], info["csk_dia"]))
         else:
             holes.append(tr("Ø{} clearance", info["dia"]))
+    merged = []
+    for h in holes:
+        if merged and merged[-1][0] == h:
+            merged[-1][1] += 1
+        else:
+            merged.append([h, 1])
+    holes = [h if n == 1 else tr("{} ({} parts)", h, n) for h, n in merged]
     count = f"{len(targets)} × " if len(targets) > 1 else ""
     thr = std.thread_length(st.kind, d, P["length"])
     V["label"] = [f"{count}{P['name'].replace('x', ' × ', 1)}",

@@ -16,13 +16,25 @@
 | J | next joint |
 | M | magnet on / off (hold Alt to ignore it) |
 
+## Patterns
+In the *Placement* box: **Single**, **Corners** (one screw near each corner of the face, set in by *Inset*), **Line** (count, spacing,
+along or across the long edge, angle) and **Circle** (count, radius, angle). On a curved part, a line or a circle walks on the surface:
+screws keep their spacing along the curve, each one square to the surface where it lands. In Edit Mode, **Add on Selected Faces**
+places the pattern on each selected face.
+
+| Key | While the preview is pinned |
+|---|---|
+| Page Up / Down | number of screws (switches to a line) |
+| R, Shift+R | rotate the pattern by 15° |
+| Tab | next pattern |
+
 ## Magnet and grid
 The magnet draws the screw to the rows and columns of the screws already on the face, to the middle between two of them and to the
 face centre, with pink guides like Photoshop's smart guides. *Grid* snaps to a grid of that step from the corner of the face.
 
 ## Other ways
 - **Add at 3D Cursor**: the preview opens pinned at the cursor, on the nearest face of the active object.
-- In Edit Mode, **Add on Selected Faces** places a screw at the centre of each selected face (or one per selected vertex).
+- In Edit Mode, **Add on Selected Faces** places the screw (or the pattern) at the centre of each selected face (or one per selected vertex).
 - **Section Card** shows a section through the screw axis in the preview: parts hatched, hole, thread.
 
 ## Where things go in the Outliner

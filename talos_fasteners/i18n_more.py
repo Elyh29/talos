@@ -204,6 +204,7 @@ DE_ES = {
     "Fix Copied Screws": ("Löcher kopierter Schrauben", "Agujeros de tornillos copiados"),
     "Talos Screw": ("Talos-Schraube", "Tornillo Talos"),
     "Tidy Collections": ("Sammlungen aufräumen", "Ordenar colecciones"),
+    "{} ({} parts)": ("{} ({} Teile)", "{} ({} piezas)"),
     "Not available in this edition, left as it was: {}": ("In dieser Ausgabe nicht verfügbar, unverändert gelassen: {}", "No disponible en esta edición, se deja igual: {}"),
     "{} was made with another edition: it can be moved, copied or removed, not edited here":
         ("{} wurde mit einer anderen Ausgabe gesetzt: verschieben, kopieren oder löschen, aber hier nicht bearbeiten",

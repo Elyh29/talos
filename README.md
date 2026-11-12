@@ -25,6 +25,7 @@ Requires Blender 4.3 or newer (tested up to 5.3). Windows, macOS and Linux.
 ### Place by clicking
 - A ghost of the real screw with its holes and a label: designation, holes, distance to the nearest edge, warnings
 - ↑↓ size, ←→ length, J joint while the preview is pinned; magnet guides, grid, Ctrl to snap to vertices and edges
+- **Patterns**: screws near the corners, in a line or on a circle (Tab, Page Up/Down, R), following curved parts
 - Optional section card: a section through the screw in the preview
 - Also at the 3D cursor, or on the selected faces in Edit Mode
 

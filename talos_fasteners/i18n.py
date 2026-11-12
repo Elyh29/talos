@@ -49,6 +49,7 @@ TR = {"fr_FR": {
     ('*', 'Talos — Fasteners'): 'Talos — Visserie',
     ('*', 'Unfreeze Holes'): 'Rendre les trous mobiles',
     ('*', 'Tidy Collections'): 'Ranger les collections',
+    ('*', '{} ({} parts)'): '{} ({} pièces)',
     ('*', 'Not available in this edition, left as it was: {}'): "Pas dans cette édition, laissé tel quel : {}",
     ('*', '{} was made with another edition: it can be moved, copied or removed, not edited here'): "{} a été posée avec une autre édition : on peut la déplacer, la copier ou la supprimer, pas la modifier ici",
     ('*', 'Settings from another edition: back to the defaults…'): 'Réglages faits avec une autre édition : retour aux valeurs par défaut…',

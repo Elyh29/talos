@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.3
+- Patterns in Talos: screws near the corners, in a line or on a circle (Tab, Page Up/Down, R), also on curved parts
+
+## 1.0.2
+- Preview label: the same hole through several parts is written once, with the number of parts
+
 ## 1.0.1
 - The whole catalogue in Talos: wood screws, inch screws (UNC), T-nuts, inch hex nuts, SAE washers
 - Through bolts always get their nut outside the part

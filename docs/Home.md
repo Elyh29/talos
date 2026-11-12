@@ -16,7 +16,7 @@ tab **Talos**. **Alt+Shift+T** in the 3D View (or **Shift+A ‣ Talos Screw**) s
 French, German and Spanish.
 
 ## Pages
-- [Placing screws](Placing.md) — the click tool, keys, magnet, curved parts, where things go in the Outliner.
+- [Placing screws](Placing.md) — the click tool, keys, patterns (corners, line, circle), magnet, curved parts, where things go in the Outliner.
 - [Joints and holes](Joints-and-holes.md) — what gets drilled where, clearance series, solvers, applying holes.
 - [Catalogue](Catalogue.md) — every standard and size.
 - [Editing](Editing.md) — edit a placed screw, Shift+D, Ctrl+M, Update, Remove.

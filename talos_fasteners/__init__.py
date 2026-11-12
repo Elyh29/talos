@@ -19,7 +19,7 @@ try:
 except ImportError:
     pro = None
 
-PRO_ONLY = {"into": {"INSERT", "SELF_TAP"}, "pattern": {"CORNERS", "LINE", "CIRCLE"}}
+PRO_ONLY = {"into": {"INSERT", "SELF_TAP"}}
 
 
 ICONS = bpy.utils.previews.new()
@@ -475,11 +475,8 @@ class VIEW3D_PT_talos(bpy.types.Panel):
         lay.label(text=info, icon="INFO")
         box = lay.box()
         box.label(text="Placement", icon="PIVOT_CURSOR")
-        if pro:
-            sketch(box, st, "pattern", 3.0)
-        if not pro:
-            pass
-        elif st.pattern == "CORNERS":
+        sketch(box, st, "pattern", 3.0)
+        if st.pattern == "CORNERS":
             box.prop(st, "inset")
         elif st.pattern != "SINGLE":
             box.prop(st, "count")
